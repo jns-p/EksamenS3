@@ -1,0 +1,55 @@
+﻿<Window x:Class="EksamenS3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EksamenS3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Registrer bøger">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid ItemsSource="{Binding BogListe}" Margin="370,0,0,0" IsReadOnly="True" Width="NaN"/>
+                    <TextBox x:Name="tb_regForfatter" HorizontalAlignment="Left" Margin="152,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="tb_regTitel" HorizontalAlignment="Left" Margin="152,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="tb_regUdgiver" HorizontalAlignment="Left" Margin="152,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="tb_regUdgiverÅr" HorizontalAlignment="Left" Margin="152,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="tb_regAntal" HorizontalAlignment="Left" Margin="152,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="tb_regISBN" HorizontalAlignment="Left" Margin="152,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="99,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Forfatter"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="122,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Titel"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="106,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Udgiver"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="80,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Udgivelsesår"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="52,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Antal eksemplarer"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="122,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="ISBN"/></TextBlock>
+                    <Button x:Name="btn_RegistrerBog" Content="Registrer" HorizontalAlignment="Left" Margin="187,227,0,0" VerticalAlignment="Top" Click="btn_RegistrerBog_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Registrer lånere">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid ItemsSource="{Binding LånerListe}" IsReadOnly="True" Margin="330,0,0,0" Grid.Column="1"/>
+                    <TextBox x:Name="tb_regLånere" Margin="125,91,509,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="39,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="ElevNr/LærerID"/></TextBlock>
+                    <TextBox x:Name="tb_regEmail" Grid.Column="1" HorizontalAlignment="Left" Margin="125,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="87,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="E-mail"/></TextBlock>
+                    <Button x:Name="btn_regLåner" Grid.Column="1" Content="Registrer" HorizontalAlignment="Left" Margin="160,137,0,0" VerticalAlignment="Top" Click="btn_regLåner_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Lån bøger">
+                <Grid>
+                    <DataGrid ItemsSource="{Binding UdlånListe}" IsReadOnly="True" Margin="330,0,0,0" Grid.Column="1"/>
+                    <DatePicker x:Name="dp_UdlånDato" HorizontalAlignment="Left" Margin="179,96,0,0" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="119,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Dato i dag"/></TextBlock>
+                    <ComboBox x:Name="cbx_Låner" ItemsSource="{Binding LånerListe}" HorizontalAlignment="Left" Margin="179,125,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="cbx_UdlånBog" ItemsSource="{Binding BogListe}" HorizontalAlignment="Left" Margin="179,152,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="145,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Låner"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="153,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1.899,0.603"><Run Language="da-dk" Text="Bog"/></TextBlock>
+                    <TextBox x:Name="tb_UdlånAntal" HorizontalAlignment="Left" Margin="179,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="147,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Antal"/></TextBlock>
+                    <Button x:Name="btn_Udlån" Content="Lån" HorizontalAlignment="Left" Margin="217,203,0,0" VerticalAlignment="Top" Width="44" Click="btn_Udlån_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
