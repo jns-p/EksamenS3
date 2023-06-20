@@ -61,7 +61,7 @@ namespace EksamenS3
             {
                 LånerId = lånid,
                 Email = email
-            };
+            };           
             Lånere.Add(låner);
             Model.SaveChanges();
         }
