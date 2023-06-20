@@ -62,7 +62,29 @@ namespace EksamenS3
 
         private void btn_Udlån_Click(object sender, RoutedEventArgs e)
         {
-            Func.OpretUdlån(dp_UdlånDato.SelectedDate, int.Parse(tb_UdlånAntal.Text), cbx_Låner.SelectedItem as Låner, cbx_UdlånBog.SelectedItem as Bog);
+            try
+            {
+            Func.OpretUdlån(dp_UdlånDato.SelectedDate, int.Parse(tb_UdlånAntal.Text), cbx_Låner.SelectedItem as Låner, cbx_UdlånBog.SelectedItem as Bog);      
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Fejl i udlån");
+            }            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Func.SletLån(dg_Lån.SelectedItem as Udlån);
+        }
+
+        private void btn_regRediger_Click(object sender, RoutedEventArgs e)
+        {
+            Func.SletBog(dg_Bøger.SelectedItem as Bog);
+        }
+
+        private void btn_SletLåner_Click(object sender, RoutedEventArgs e)
+        {
+            Func.SletUdlåner(dg_udlånere.SelectedItem as Låner);
         }
     }
 }

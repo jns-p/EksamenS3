@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,6 +37,7 @@ namespace EksamenS3
         {
             Model.Bøger.Load();
             Model.Lånere.Load();
+            Model.Udlånere.Load();
         }
 
         public void OpretBog(string forfatter, string titel, string udgiver, int udgivår, int antal, int isbn)
@@ -50,15 +52,15 @@ namespace EksamenS3
                 ISBN = isbn,
             };
             Bøger.Add(bog);
-            Model.SaveChanges();            
+            Model.SaveChanges();
         }
 
-        public void OpretLåner(string LånId, string Email)
+        public void OpretLåner(string lånid, string email)
         {
             Låner låner = new Låner()
             {
-                LånerId = LånId,
-                Email = Email
+                LånerId = lånid,
+                Email = email
             };
             Lånere.Add(låner);
             Model.SaveChanges();
@@ -73,7 +75,29 @@ namespace EksamenS3
                 Låner = låner,
                 Bog = bog,
             };
+            if (antal > bog.Antal)
+            {
+                throw new Exception("Der er ikke så mange eksemplarer af den bog");
+            }
             Udlånere.Add(udlån);
+            Model.SaveChanges();
+        }
+
+        public void SletBog(Bog bog)
+        {
+            Bøger.Remove(bog);
+            Model.SaveChanges();
+        }
+
+        public void SletLån(Udlån udlån)
+        {
+            Udlånere.Remove(udlån);
+            Model.SaveChanges();
+        }
+
+        public void SletUdlåner(Låner låner)
+        {
+            Lånere.Remove(låner);
             Model.SaveChanges();
         }
     }

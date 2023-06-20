@@ -11,6 +11,6 @@ namespace EksamenS3
         public int Id { get; set; }
 
         public string LånerId { get; set; }
-        public string Email { get; set; }
+        public string Email { get; set; }        
     }
 }
